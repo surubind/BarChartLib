@@ -1,6 +1,7 @@
 package suru.bind.barchartlib.adapter;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -31,7 +33,8 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
     private int axisTextSize;
     private OnChartItemClicked callback;
 
-    public BarChartAdapter(List<ChartContent> chartList, Context context, int axisColor, Typeface axisTypeface, int axisTextSize,OnChartItemClicked callback) {
+
+    public BarChartAdapter(List<ChartContent> chartList, Context context, int axisColor, Typeface axisTypeface, int axisTextSize, OnChartItemClicked callback) {
         this.chartList = chartList;
         this.context = context;
         this.axisColor = axisColor;
@@ -92,17 +95,13 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
 
         drawable = holder.iv.getDrawable();
         drawable = DrawableCompat.wrap(drawable);
-        //the color is a direct color int and not a color resource
         DrawableCompat.setTint(drawable, chartList.get(position).getColor());
         holder.iv.setImageDrawable(drawable);
 
-        holder.v.setBackgroundColor(chartList.get(position).getColor());
+        ViewCompat.setBackgroundTintList(
+                holder.v,
+                ColorStateList.valueOf(chartList.get(position).getColor()));
 
-        GradientDrawable chart_drawable = (GradientDrawable) holder.v.getBackground();
-        chart_drawable.setColor(chartList.get(position).getColor());
-
-
-        //holder.v.setMinimumHeight((int) horizontalGrocderyList.get(position).getHeight());
         Log.e("MYCHARTDATA", "height:" + ((int) chartList.get(position).getHeight()));
         Log.e("MYCHARTDATA", "type:" + chartList.get(position).getTitle());
         holder.v.getLayoutParams().height = ((int) chartList.get(position).getHeight());
