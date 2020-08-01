@@ -55,8 +55,17 @@ public class BarChartHelper {
     private Typeface axisTypeface;
     private int axisTextSize;
 
+    public BarChartAdapter.OnChartItemClicked getCallback() {
+        return callback;
+    }
+
+    public void setCallback(BarChartAdapter.OnChartItemClicked callback) {
+        this.callback = callback;
+    }
+
+    private BarChartAdapter.OnChartItemClicked callback;
 
     public BarChartAdapter getAdapter() {
-        return new BarChartAdapter(chartList, context, axisColor, axisTypeface, axisTextSize);
+        return new BarChartAdapter(chartList, context, axisColor, axisTypeface, axisTextSize,callback);
     }
 }

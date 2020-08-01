@@ -29,13 +29,15 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
     private int axisColor;
     private Typeface axisTypeface;
     private int axisTextSize;
+    private OnChartItemClicked callback;
 
-    public BarChartAdapter(List<ChartContent> chartList, Context context, int axisColor, Typeface axisTypeface, int axisTextSize) {
+    public BarChartAdapter(List<ChartContent> chartList, Context context, int axisColor, Typeface axisTypeface, int axisTextSize,OnChartItemClicked callback) {
         this.chartList = chartList;
         this.context = context;
         this.axisColor = axisColor;
         this.axisTypeface = axisTypeface;
         this.axisTextSize = axisTextSize;
+        this.callback = callback;
         /*animBlink = AnimationUtils.loadAnimation(context,
                 R.anim.blink_info);*/
     }
@@ -110,6 +112,7 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
         holder.v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                callback.onItemClicked(chartList.get(position));
                 //setAnimation(holder.tv, position);
                 //Toast.makeText(context, " " + chartList.get(position).getTitle() + " (" + (int) chartList.get(position).getValue() + "%) ", Toast.LENGTH_SHORT).show();
             }
@@ -117,6 +120,7 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
         holder.rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                callback.onItemClicked(chartList.get(position));
                 //setAnimation(holder.tv, position);
                 //Toast.makeText(context, " " + chartList.get(position).getTitle() + " (" + (int) chartList.get(position).getValue() + "%) ", Toast.LENGTH_SHORT).show();
             }
@@ -155,6 +159,10 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
             v = view.findViewById(R.id.view);
             tv_xaxis = view.findViewById(R.id.tv_xaxis);
         }
+    }
+
+    public interface OnChartItemClicked {
+        void onItemClicked(ChartContent content);
     }
 
 }
