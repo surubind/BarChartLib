@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="60dp"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_xaxis"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/baloon"
+            android:backgroundTint="#000000">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:paddingBottom="10dp"
+                android:text="0%"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image1"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_below="@+id/rl1"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@drawable/ic_item"
+            android:tint="#000000"/>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/image1"
+            android:background="@drawable/viewbackground"
+            android:backgroundTint="#000000"/>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_xaxis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="08dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="Cards"
+        android:textColor="#000000"
+        android:textSize="10sp" />
+
+</RelativeLayout>

@@ -1,0 +1,3 @@
+include ':barchart'
+include ':app'
+rootProject.name = "BarChartLib"
