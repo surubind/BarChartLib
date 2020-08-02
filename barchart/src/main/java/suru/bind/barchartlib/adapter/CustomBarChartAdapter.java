@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,7 +22,7 @@ import java.util.List;
 import suru.bind.barchartlib.R;
 import suru.bind.barchartlib.model.ChartContent;
 
-public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartViewHolder> {
+public class CustomBarChartAdapter extends RecyclerView.Adapter<CustomBarChartAdapter.ChartViewHolder> {
     //private Animation animBlink;
     private Context context;
     private int lastPosition = -1;
@@ -34,7 +33,7 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
     private OnChartItemClicked callback;
 
 
-    public BarChartAdapter(List<ChartContent> chartList, Context context, int axisColor, Typeface axisTypeface, int axisTextSize, OnChartItemClicked callback) {
+    public CustomBarChartAdapter(List<ChartContent> chartList, Context context, int axisColor, Typeface axisTypeface, int axisTextSize, OnChartItemClicked callback) {
         this.chartList = chartList;
         this.context = context;
         this.axisColor = axisColor;

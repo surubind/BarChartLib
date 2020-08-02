@@ -13,7 +13,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import suru.bind.barchartlib.adapter.BarChartAdapter;
+import suru.bind.barchartlib.adapter.CustomBarChartAdapter;
 import suru.bind.barchartlib.model.ChartContent;
 
 public class MainActivity extends AppCompatActivity {
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             list.add(new ChartContent(images[i], type[i], p[i], colors[i], height[i]));
         }
 
-        BarChartAdapter adapter = new BarChartAdapter(list, MainActivity.this, Color.BLUE, null, 10, new BarChartAdapter.OnChartItemClicked() {
+        CustomBarChartAdapter adapter = new CustomBarChartAdapter(list, MainActivity.this, Color.BLUE, null, 10, new CustomBarChartAdapter.OnChartItemClicked() {
             @Override
             public void onItemClicked(ChartContent content) {
 
