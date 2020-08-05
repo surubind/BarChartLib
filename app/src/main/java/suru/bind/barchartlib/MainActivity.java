@@ -13,7 +13,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import suru.bind.barchartlib.adapter.CustomBarChartAdapter;
+import suru.bind.barchartlib.adapter.BarChartAdapter;
+import suru.bind.barchartlib.adapter.OnChartItemClicked;
+import suru.bind.barchartlib.builder.BarChart;
 import suru.bind.barchartlib.model.ChartContent;
 
 public class MainActivity extends AppCompatActivity {
@@ -57,13 +59,28 @@ public class MainActivity extends AppCompatActivity {
             list.add(new ChartContent(images[i], type[i], p[i], colors[i], height[i]));
         }
 
-        CustomBarChartAdapter adapter = new CustomBarChartAdapter(list, MainActivity.this, Color.BLUE, null, 10, new CustomBarChartAdapter.OnChartItemClicked() {
+        /*BarChartAdapter adapter = new BarChartAdapter(list, MainActivity.this, Color.BLUE, null, 10, new BarChartAdapter.OnChartItemClicked() {
             @Override
             public void onItemClicked(ChartContent content) {
 
             }
         });
         Log.d(TAG,"Count:"+adapter.getItemCount()+"");
+        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recycler.setLayoutManager(horizontalLayoutManager);
+        recycler.setAdapter(adapter);*/
+
+        BarChartAdapter adapter = new BarChart.BarChartBuilder(MainActivity.this, list)
+                .setXAxisColor(Color.YELLOW).setXAxisTextSize(20)
+                .addItemClickListener(new OnChartItemClicked() {
+                    @Override
+                    public void onItemClicked(ChartContent content) {
+
+                    }
+                })
+                .buildBarChartAdapter();
+
+        Log.d(TAG, "Count:" + adapter.getItemCount() + "");
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recycler.setLayoutManager(horizontalLayoutManager);
         recycler.setAdapter(adapter);

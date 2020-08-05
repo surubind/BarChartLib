@@ -20,9 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import suru.bind.barchartlib.R;
+import suru.bind.barchartlib.builder.BarChart;
 import suru.bind.barchartlib.model.ChartContent;
 
-public class CustomBarChartAdapter extends RecyclerView.Adapter<CustomBarChartAdapter.ChartViewHolder> {
+public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartViewHolder> {
     //private Animation animBlink;
     private Context context;
     private int lastPosition = -1;
@@ -33,7 +34,7 @@ public class CustomBarChartAdapter extends RecyclerView.Adapter<CustomBarChartAd
     private OnChartItemClicked callback;
 
 
-    public CustomBarChartAdapter(List<ChartContent> chartList, Context context, int axisColor, Typeface axisTypeface, int axisTextSize, OnChartItemClicked callback) {
+    public BarChartAdapter(List<ChartContent> chartList, Context context, int axisColor, Typeface axisTypeface, int axisTextSize, OnChartItemClicked callback) {
         this.chartList = chartList;
         this.context = context;
         this.axisColor = axisColor;
@@ -43,6 +44,7 @@ public class CustomBarChartAdapter extends RecyclerView.Adapter<CustomBarChartAd
         /*animBlink = AnimationUtils.loadAnimation(context,
                 R.anim.blink_info);*/
     }
+
 
     @Override
     public ChartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -159,8 +161,6 @@ public class CustomBarChartAdapter extends RecyclerView.Adapter<CustomBarChartAd
         }
     }
 
-    public interface OnChartItemClicked {
-        void onItemClicked(ChartContent content);
-    }
+
 
 }
