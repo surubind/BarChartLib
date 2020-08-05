@@ -26,7 +26,6 @@ import suru.bind.barchartlib.model.ChartContent;
 public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartViewHolder> {
     //private Animation animBlink;
     private Context context;
-    private int lastPosition = -1;
     private List<ChartContent> chartList;
     private int axisColor;
     private Typeface axisTypeface;
@@ -75,7 +74,7 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
 
 
         holder.tv_xaxis.setText(chartList.get(position).getTitle());
-        if (getAxisColor() > 0) {
+        if (getAxisColor() != 0) {
             holder.tv_xaxis.setTextColor(getAxisColor());
         }
 
@@ -137,6 +136,7 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
     }
 
     private int getAxisColor() {
+        Log.d("AXISCOLOR", axisColor + "");
         return axisColor;
     }
 
@@ -160,7 +160,6 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
             tv_xaxis = view.findViewById(R.id.tv_xaxis);
         }
     }
-
 
 
 }

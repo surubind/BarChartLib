@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         double[] counts = {15, 25, 10};
         String[] type = {"Card", "UPI", "BQR"};
         Drawable[] images = {getDrawable(R.drawable.ic_card_pie), getDrawable(R.drawable.ic_upi_pie), getDrawable(R.drawable.ic_bharatqr_pie)};
-        int[] colors = {Color.parseColor("#FF0000"), Color.parseColor("#6200EE"),
+        final int[] colors = {Color.parseColor("#FF0000"), Color.parseColor("#6200EE"),
                 Color.parseColor("#03DAC5")};
 
         double[] p = new double[3];
@@ -71,11 +72,12 @@ public class MainActivity extends AppCompatActivity {
         recycler.setAdapter(adapter);*/
 
         BarChartAdapter adapter = new BarChart.BarChartBuilder(MainActivity.this, list)
-                .setXAxisColor(Color.YELLOW).setXAxisTextSize(20)
+                .setXAxisColor(Color.YELLOW)
+                .setXAxisTextSize(20)
                 .addItemClickListener(new OnChartItemClicked() {
                     @Override
                     public void onItemClicked(ChartContent content) {
-
+                        Toast.makeText(MainActivity.this, content.getTitle(), Toast.LENGTH_SHORT).show();
                     }
                 })
                 .buildBarChartAdapter();
