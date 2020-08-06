@@ -54,26 +54,32 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
 
     @Override
     public void onBindViewHolder(final ChartViewHolder holder, final int position) {
-        holder.iv.setImageDrawable(chartList.get(position).getIcon());
-        Log.e("ChartContentListAdapter", "per:" + chartList.get(position).getValue() + "%");
-        if (!TextUtils.isEmpty(chartList.get(position).getValue() + "") && chartList.get(position).getValue() >= 100d) {
+        ChartContent content = chartList.get(position);
+
+        double percent = getPercent(content.getValue(), content.getTotal());
+        long height = getHeight(percent, 500);
+
+        holder.iv.setImageDrawable(content.getIcon());
+
+        Log.e("ChartContentListAdapter", "per:" + percent + "%");
+        if (!TextUtils.isEmpty(percent + "") && percent >= 100d) {
             holder.tv.setText("100" + "%");
         } else {
-            if (!TextUtils.isEmpty(chartList.get(position).getValue() + "") && String.valueOf(chartList.get(position).getValue()).contains(".0")) {
-                holder.tv.setText(String.valueOf(chartList.get(position).getValue()).replace(".0", "") + "%");
+            if (!TextUtils.isEmpty(percent + "") && String.valueOf(percent).contains(".0")) {
+                holder.tv.setText(String.valueOf(percent).replace(".0", "") + "%");
             } else {
-                holder.tv.setText(chartList.get(position).getValue() + "%");
+                holder.tv.setText(percent + "%");
             }
         }
 
-        /*if (!TextUtils.isEmpty(chartList.get(position).getTitle()) && chartList.get(position).getTitle().equalsIgnoreCase("bharatqr")) {
+        /*if (!TextUtils.isEmpty(content.getTitle()) && content.getTitle().equalsIgnoreCase("bharatqr")) {
             holder.tv_xaxis.setText("BQR");
         } else {
-            holder.tv_xaxis.setText(chartList.get(position).getTitle());
+            holder.tv_xaxis.setText(content.getTitle());
         }*/
 
 
-        holder.tv_xaxis.setText(chartList.get(position).getTitle());
+        holder.tv_xaxis.setText(content.getTitle());
         if (getAxisColor() != 0) {
             holder.tv_xaxis.setTextColor(getAxisColor());
         }
@@ -90,21 +96,21 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
         Drawable drawable = holder.rl.getBackground();
         drawable = DrawableCompat.wrap(drawable);
         //the color is a direct color int and not a color resource
-        DrawableCompat.setTint(drawable, chartList.get(position).getColor());
+        DrawableCompat.setTint(drawable, content.getColor());
         holder.rl.setBackground(drawable);
 
         drawable = holder.iv.getDrawable();
         drawable = DrawableCompat.wrap(drawable);
-        DrawableCompat.setTint(drawable, chartList.get(position).getColor());
+        DrawableCompat.setTint(drawable, content.getColor());
         holder.iv.setImageDrawable(drawable);
 
         ViewCompat.setBackgroundTintList(
                 holder.v,
-                ColorStateList.valueOf(chartList.get(position).getColor()));
+                ColorStateList.valueOf(content.getColor()));
 
-        Log.e("MYCHARTDATA", "height:" + ((int) chartList.get(position).getHeight()));
-        Log.e("MYCHARTDATA", "type:" + chartList.get(position).getTitle());
-        holder.v.getLayoutParams().height = ((int) chartList.get(position).getHeight());
+        Log.e("MYCHARTDATA", "height:" + ((int) height));
+        Log.e("MYCHARTDATA", "type:" + content.getTitle());
+        holder.v.getLayoutParams().height = ((int) height);
         holder.v.invalidate();
         holder.v.requestLayout();
 
@@ -113,7 +119,7 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
             public void onClick(View v) {
                 callback.onItemClicked(chartList.get(position));
                 //setAnimation(holder.tv, position);
-                //Toast.makeText(context, " " + chartList.get(position).getTitle() + " (" + (int) chartList.get(position).getValue() + "%) ", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, " " + content.getTitle() + " (" + (int) content.getValue() + "%) ", Toast.LENGTH_SHORT).show();
             }
         });
         holder.rl.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +127,7 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
             public void onClick(View view) {
                 callback.onItemClicked(chartList.get(position));
                 //setAnimation(holder.tv, position);
-                //Toast.makeText(context, " " + chartList.get(position).getTitle() + " (" + (int) chartList.get(position).getValue() + "%) ", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, " " + content.getTitle() + " (" + (int) content.getValue() + "%) ", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -161,5 +167,27 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
         }
     }
 
+    private long getHeight(double value, int i) {
+        return Math.round((value / 100) * i);
+    }
+
+    private double getPercent(double value, double total) {
+        String TAG = "populateChartList():";
+        double p = (value / total) * 100;
+        if (Double.isNaN(p)) {
+            p = 0d;
+        }
+        String s = String.format("%.1f", p);
+        double m = 0.0;
+        try {
+            m = Double.parseDouble(s);
+        } catch (Exception e) {
+            m = p;
+        }
+        //m = 100d;
+        Log.e(TAG, "value:" + value + "/" + total + "=" + m);
+        //return Math.round(p);
+        return m;
+    }
 
 }

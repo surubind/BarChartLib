@@ -6,27 +6,35 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 
 public class ChartContent {
-    double value;
     AppCompatImageView image;
     int color;
-    double height;
     Drawable icon;
     String title;
-
-    public ChartContent(Drawable icon, String title, double value, int color, double height) {
-        this.icon = icon;
-        this.title = title;
-        this.value = value;
-        this.color = color;
-        this.height = height;
-    }
+    double value;
+    double total;
 
     public double getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValues(double value) {
         this.value = value;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public ChartContent(Drawable icon, String title, int color, double value, double total) {
+        this.icon = icon;
+        this.title = title;
+        this.color = color;
+        this.value = value;
+        this.total = total;
     }
 
     public AppCompatImageView getImage() {
@@ -43,14 +51,6 @@ public class ChartContent {
 
     public void setColor(int color) {
         this.color = color;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
     }
 
     public Drawable getIcon() {
