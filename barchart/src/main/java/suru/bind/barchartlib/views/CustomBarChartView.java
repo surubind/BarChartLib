@@ -87,4 +87,12 @@ public class CustomBarChartView extends LinearLayout {
     public void setCustomTitleSize(int size) {
         this.titleView.setTextSize(size);
     }
+
+    public void setChartHeight(int height) {
+        final float scale = getResources().getDisplayMetrics().density;
+        int pixels = (int) (height * scale + 0.5f);
+        this.barchart_recycler.getLayoutParams().height = pixels;
+        this.barchart_recycler.invalidate();
+        this.barchart_recycler.requestFocus();
+    }
 }

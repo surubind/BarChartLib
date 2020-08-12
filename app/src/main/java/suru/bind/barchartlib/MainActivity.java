@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         barChartView.setCustomTitleColor(Color.BLUE);
         barChartView.setCustomTitleSize(16);
         //barChartView.setCustomTitleTheme(typeface);
+        barChartView.setChartHeight(250);
 
     }
 
