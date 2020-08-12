@@ -27,29 +27,14 @@ public class CustomBarChartView extends LinearLayout {
         setOrientation(LinearLayout.VERTICAL);
         LayoutInflater.from(context).inflate(R.layout.custombarchartview, this, true);
 
-        String title;
-        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CustomBarChartView, 0, 0);
-
-        try {
-            title = a.getString(R.styleable.CustomBarChartView_custom_bar_title);
-        } finally {
-            a.recycle();
-        }
-
-        // Throw an exception if required attributes are not set
-        if (title == null) {
-            title = "Custom Title";
-        }
-
-
-        init(title);
+        init();
     }
 
     // Setup views
-    private void init(String title) {
+    private void init() {
         titleView = findViewById(R.id.barchart_title);
         barchart_recycler = findViewById(R.id.barchart_recycler);
-        titleView.setText(title);
+        //titleView.setText(title);
 
     }
 
@@ -97,9 +82,9 @@ public class CustomBarChartView extends LinearLayout {
     }
 
     public void showTitle(boolean b) {
-        if(b) {
+        if (b) {
             this.titleView.setVisibility(VISIBLE);
-        }else{
+        } else {
             this.titleView.setVisibility(GONE);
         }
     }
