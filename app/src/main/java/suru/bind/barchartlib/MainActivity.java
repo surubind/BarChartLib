@@ -1,13 +1,11 @@
 package suru.bind.barchartlib;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 
@@ -62,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .buildBarChartAdapter();
 
-        barChartView.setAdapter(MainActivity.this, adapter);
-        barChartView.setCustomTitle("Custom Chart");
-        barChartView.setCustomTitleColor(Color.BLUE);
+        barChartView.setAdapter(adapter);
+        //barChartView.setCustomTitle("Custom Chart");
+        //barChartView.setCustomTitleColor(Color.BLUE);
         barChartView.setCustomTitleSize(16);
-        //barChartView.setCustomTitleTheme(typeface);
+        //barChartView.setCustomTitleFont(typeface);
         barChartView.setChartHeight(250);
         barChartView.showTitle(true);
 

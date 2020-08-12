@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomView">
+        <attr name="customTitle" format="string" />
+        <attr name="customTitleColor" format="color" />
+        <attr name="customTitleSize" format="integer" />
+        <attr name="customTitleFont" format="reference" />
+        <attr name="chartBackgroundColor" format="color" />
+    </declare-styleable>
+</resources>
