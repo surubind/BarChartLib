@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         barChartView.setCustomTitleSize(16);
         //barChartView.setCustomTitleTheme(typeface);
         barChartView.setChartHeight(250);
+        barChartView.showTitle(true);
 
     }
 

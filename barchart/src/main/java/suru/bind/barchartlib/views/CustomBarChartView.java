@@ -95,4 +95,12 @@ public class CustomBarChartView extends LinearLayout {
         this.barchart_recycler.invalidate();
         this.barchart_recycler.requestFocus();
     }
+
+    public void showTitle(boolean b) {
+        if(b) {
+            this.titleView.setVisibility(VISIBLE);
+        }else{
+            this.titleView.setVisibility(GONE);
+        }
+    }
 }
