@@ -2,10 +2,19 @@
 <resources>
 
     <declare-styleable name="CustomView">
-        <attr name="customTitle" format="string" />
-        <attr name="customTitleColor" format="color" />
-        <attr name="customTitleSize" format="integer" />
-        <attr name="customTitleFont" format="reference" />
-        <attr name="chartBackgroundColor" format="color" />
+        <attr name="title" format="string|reference" />
+        <attr name="titleColor" format="color|reference" />
+        <attr name="titleSize" format="integer" />
+        <attr name="chartHeight" format="integer" />
+        <attr name="titleFont" format="reference" />
+        <attr name="chartBackgroundColor" format="color|reference" />
+        <attr name="canShowTitle" format="boolean" />
+
+        <!-- <attr name="chartHeight" format="dimension">
+             <enum name="fill_parent" value="-1" />
+             <enum name="match_parent" value="-1" />
+             <enum name="wrap_content" value="-2" />
+         </attr>-->
+
     </declare-styleable>
 </resources>

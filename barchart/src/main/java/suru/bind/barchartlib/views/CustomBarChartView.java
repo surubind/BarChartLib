@@ -1,13 +1,12 @@
 package suru.bind.barchartlib.views;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +26,15 @@ import suru.bind.barchartlib.adapter.BarChartAdapter;
 public class CustomBarChartView extends LinearLayout {
     private RecyclerView barchart_recycler;
     private TextView titleView;
-    private LinearLayout layout;
+    private ConstraintLayout layout;
+
+    private String title;
+    private int titleColor;
+    private int titleSize;
+    private int chartHeight;
+    private Typeface titleFont;
+    private int chartBackground;
+    private boolean canShowTitle;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public CustomBarChartView(Context context, @Nullable AttributeSet attrs) {
@@ -34,19 +42,16 @@ public class CustomBarChartView extends LinearLayout {
         setOrientation(LinearLayout.VERTICAL);
         LayoutInflater.from(context).inflate(R.layout.custombarchartview, this, true);
 
-        String title;
-        int color;
-        int size;
-        Typeface font;
-        int background;
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CustomView, 0, 0);
 
         try {
-            title = a.getString(R.styleable.CustomView_customTitle);
-            color = a.getColor(R.styleable.CustomView_customTitleColor, Color.BLACK);
-            size = a.getInteger(R.styleable.CustomView_customTitleSize, 18);
-            font = a.getFont(R.styleable.CustomView_customTitleFont);
-            background = a.getColor(R.styleable.CustomView_chartBackgroundColor, Color.WHITE);
+            title = a.getString(R.styleable.CustomView_title);
+            titleColor = a.getColor(R.styleable.CustomView_titleColor, Color.BLACK);
+            titleSize = a.getInteger(R.styleable.CustomView_titleSize, 18);
+            chartHeight = a.getInteger(R.styleable.CustomView_chartHeight, 100);
+            titleFont = a.getFont(R.styleable.CustomView_titleFont);
+            chartBackground = a.getColor(R.styleable.CustomView_chartBackgroundColor, Color.WHITE);
+            canShowTitle = a.getBoolean(R.styleable.CustomView_canShowTitle, false);
         } finally {
             a.recycle();
         }
@@ -56,24 +61,35 @@ public class CustomBarChartView extends LinearLayout {
             title = "";
         }
 
-        if (font == null) {
-            font = ResourcesCompat.getFont(getContext(), R.font.montserrat_regular);
+        if (titleFont == null) {
+            titleFont = ResourcesCompat.getFont(getContext(), R.font.montserrat_regular);
         }
 
-        init(title, color, size, font, background);
+        init(title, titleColor, titleSize, titleFont, chartBackground, chartHeight, canShowTitle);
     }
 
     // Setup views
-    private void init(String title, int color, int size, Typeface font, int background) {
+    private void init(String title, int color, int size, Typeface font, int background, int chartSize, boolean showTitle) {
         titleView = findViewById(R.id.barchart_title);
         layout = findViewById(R.id.layout);
         barchart_recycler = findViewById(R.id.barchart_recycler);
-        titleView.setText(title);
-        titleView.setTextColor(color);
-        titleView.setTextSize(size);
-        titleView.setTypeface(font);
-        layout.setBackgroundColor(background);
 
+        setTitle(title);
+        setTitleColor(color);
+        setTitleSize(size);
+        setTitleFont(font);
+        setChartBackground(background);
+        setChartHeight(chartSize);
+        canShowTitle(showTitle);
+
+    }
+
+    private void canShowTitle(boolean showTitle) {
+        if (canShowTitle) {
+            this.titleView.setVisibility(VISIBLE);
+        } else {
+            this.titleView.setVisibility(GONE);
+        }
     }
 
     public void setAdapter(BarChartAdapter adapter) {
@@ -94,20 +110,20 @@ public class CustomBarChartView extends LinearLayout {
         recyclerView.setFocusable(false);
     }
 
-    public void setCustomTitle(@Nullable String title) {
+    public void setTitle(@Nullable String title) {
         this.titleView.setText(title);
     }
 
-    public void setCustomTitleColor(int color) {
+    public void setTitleColor(int color) {
         this.titleView.setTextColor(color);
     }
 
-    public void setCustomTitleFont(Typeface typeface) {
+    public void setTitleFont(Typeface typeface) {
         this.titleView.setTypeface(typeface);
 
     }
 
-    public void setCustomTitleSize(int size) {
+    public void setTitleSize(int size) {
         this.titleView.setTextSize(size);
     }
 
@@ -119,11 +135,7 @@ public class CustomBarChartView extends LinearLayout {
         this.barchart_recycler.requestFocus();
     }
 
-    public void showTitle(boolean b) {
-        if (b) {
-            this.titleView.setVisibility(VISIBLE);
-        } else {
-            this.titleView.setVisibility(GONE);
-        }
+    public void setChartBackground(int color) {
+        this.layout.setBackgroundColor(color);
     }
 }

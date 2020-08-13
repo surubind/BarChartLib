@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recycler;
     private List<ChartContent> list = new ArrayList<>();
     private CustomBarChartView barChartView;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,19 @@ public class MainActivity extends AppCompatActivity {
 
         recycler = findViewById(R.id.recycler);
         barChartView = findViewById(R.id.barChartView);
+        button = findViewById(R.id.button);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setChart();
+            }
+        });
+
+        setChart();
+    }
+
+    private void setChart() {
         double total = 50;
         System.out.println(TAG + "Total:" + total);
 
@@ -61,13 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 .buildBarChartAdapter();
 
         barChartView.setAdapter(adapter);
-        //barChartView.setCustomTitle("Custom Chart");
-        //barChartView.setCustomTitleColor(Color.BLUE);
-        barChartView.setCustomTitleSize(16);
-        //barChartView.setCustomTitleFont(typeface);
-        barChartView.setChartHeight(250);
-        barChartView.showTitle(true);
-
     }
 
 }
