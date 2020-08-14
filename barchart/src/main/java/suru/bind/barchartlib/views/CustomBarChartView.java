@@ -30,8 +30,8 @@ public class CustomBarChartView extends LinearLayout {
 
     private String title;
     private int titleColor;
-    private int titleSize;
-    private int chartHeight;
+    private float titleSize;
+    private float chartHeight;
     private Typeface titleFont;
     private int chartBackground;
     private boolean canShowTitle;
@@ -47,8 +47,10 @@ public class CustomBarChartView extends LinearLayout {
         try {
             title = a.getString(R.styleable.CustomView_title);
             titleColor = a.getColor(R.styleable.CustomView_titleColor, Color.BLACK);
-            titleSize = a.getInteger(R.styleable.CustomView_titleSize, 18);
-            chartHeight = a.getInteger(R.styleable.CustomView_chartHeight, 100);
+            titleSize = getRawSizeValue(a, R.styleable.CustomView_titleSize,
+                    18);
+            chartHeight = getRawSizeValue(a, R.styleable.CustomView_chartHeight,
+                    100);
             titleFont = a.getFont(R.styleable.CustomView_titleFont);
             chartBackground = a.getColor(R.styleable.CustomView_chartBackgroundColor, Color.WHITE);
             canShowTitle = a.getBoolean(R.styleable.CustomView_canShowTitle, false);
@@ -68,8 +70,18 @@ public class CustomBarChartView extends LinearLayout {
         init(title, titleColor, titleSize, titleFont, chartBackground, chartHeight, canShowTitle);
     }
 
+    private float getRawSizeValue(TypedArray a, int index, float defValue) {
+        TypedValue outValue = new TypedValue();
+        boolean result = a.getValue(index, outValue);
+        if (!result) {
+            return defValue;
+        }
+
+        return TypedValue.complexToFloat(outValue.data);
+    }
+
     // Setup views
-    private void init(String title, int color, int size, Typeface font, int background, int chartSize, boolean showTitle) {
+    private void init(String title, int color, float size, Typeface font, int background, float chartSize, boolean showTitle) {
         titleView = findViewById(R.id.barchart_title);
         layout = findViewById(R.id.layout);
         barchart_recycler = findViewById(R.id.barchart_recycler);
@@ -123,11 +135,11 @@ public class CustomBarChartView extends LinearLayout {
 
     }
 
-    public void setTitleSize(int size) {
+    public void setTitleSize(float size) {
         this.titleView.setTextSize(size);
     }
 
-    public void setChartHeight(int height) {
+    public void setChartHeight(float height) {
         final float scale = getResources().getDisplayMetrics().density;
         int pixels = (int) (height * scale + 0.5f);
         this.barchart_recycler.getLayoutParams().height = pixels;

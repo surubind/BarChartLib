@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:canShowTitle="true"
         app:chartBackgroundColor="@color/colorChartBG"
-        app:chartHeight="250"
+        app:chartHeight="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -23,7 +23,7 @@
         app:title="Payments"
         app:titleColor="#FF0000"
         app:titleFont="@font/montserrat_regular"
-        app:titleSize="20" />
+        app:titleSize="10sp" />
 
     <Button
         android:id="@+id/button"

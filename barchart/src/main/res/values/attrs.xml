@@ -4,8 +4,8 @@
     <declare-styleable name="CustomView">
         <attr name="title" format="string|reference" />
         <attr name="titleColor" format="color|reference" />
-        <attr name="titleSize" format="integer" />
-        <attr name="chartHeight" format="integer" />
+        <attr name="titleSize" format="dimension" />
+        <attr name="chartHeight" format="dimension" />
         <attr name="titleFont" format="reference" />
         <attr name="chartBackgroundColor" format="color|reference" />
         <attr name="canShowTitle" format="boolean" />
