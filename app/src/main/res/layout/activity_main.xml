@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:shrinkMode="strict">
 
 
     <suru.bind.barchartlib.views.CustomBarChartView
@@ -13,17 +14,17 @@
         android:layout_height="wrap_content"
         app:canShowTitle="true"
         app:chartBackgroundColor="@color/colorChartBG"
-        app:chartHeight="250dp"
+        app:chartHeight="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:title="Payments"
-        app:titleColor="#FF0000"
-        app:titleFont="@font/montserrat_regular"
-        app:titleSize="30sp" />
+        app:title="TEXT"
+        app:titleColor="@color/colorred"
+        app:titleFont="@font/montserrat_bold"
+        app:titleSize="20sp" />
 
     <Button
         android:id="@+id/button"

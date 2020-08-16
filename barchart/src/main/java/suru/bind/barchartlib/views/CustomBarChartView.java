@@ -50,7 +50,7 @@ public class CustomBarChartView extends LinearLayout {
             titleSize = getRawSizeValue(a, R.styleable.CustomView_titleSize,
                     18);
             chartHeight = getRawSizeValue(a, R.styleable.CustomView_chartHeight,
-                    100);
+                    0);
             titleFont = a.getFont(R.styleable.CustomView_titleFont);
             chartBackground = a.getColor(R.styleable.CustomView_chartBackgroundColor, Color.WHITE);
             canShowTitle = a.getBoolean(R.styleable.CustomView_canShowTitle, false);
