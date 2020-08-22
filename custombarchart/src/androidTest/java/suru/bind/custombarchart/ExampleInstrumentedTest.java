@@ -1,4 +1,4 @@
-package suru.bind.barchartlib;
+package suru.bind.custombarchart;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("suru.bind.barchart.test", appContext.getPackageName());
+        assertEquals("suru.bind.custombarchart.test", appContext.getPackageName());
     }
 }

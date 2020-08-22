@@ -1,13 +1,13 @@
-package suru.bind.barchartlib.builder;
+package suru.bind.custombarchart.builder;
 
 import android.content.Context;
 import android.graphics.Typeface;
 
 import java.util.List;
 
-import suru.bind.barchartlib.adapter.BarChartAdapter;
-import suru.bind.barchartlib.adapter.OnChartItemClicked;
-import suru.bind.barchartlib.model.ChartContent;
+import suru.bind.custombarchart.adapter.BarChartAdapter;
+import suru.bind.custombarchart.adapter.OnChartItemClicked;
+import suru.bind.custombarchart.model.ChartContent;
 
 public class BarChart {
     public List<ChartContent> getChartList() {

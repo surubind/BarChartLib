@@ -1,4 +1,4 @@
-package suru.bind.barchartlib.views;
+package suru.bind.custombarchart.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -20,8 +20,8 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import suru.bind.barchartlib.R;
-import suru.bind.barchartlib.adapter.BarChartAdapter;
+import suru.bind.custombarchart.R;
+import suru.bind.custombarchart.adapter.BarChartAdapter;
 
 public class CustomBarChartView extends LinearLayout {
     private RecyclerView barchart_recycler;

@@ -1,4 +1,4 @@
-package suru.bind.barchartlib;
+package suru.bind.custombarchart;
 
 import org.junit.Test;
 

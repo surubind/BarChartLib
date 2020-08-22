@@ -1,4 +1,4 @@
-package suru.bind.barchartlib.adapter;
+package suru.bind.custombarchart.adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -19,9 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import suru.bind.barchartlib.R;
-import suru.bind.barchartlib.builder.BarChart;
-import suru.bind.barchartlib.model.ChartContent;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import suru.bind.custombarchart.R;
+import suru.bind.custombarchart.R2;
+import suru.bind.custombarchart.model.ChartContent;
 
 public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartViewHolder> {
     //private Animation animBlink;
@@ -152,18 +154,25 @@ public class BarChartAdapter extends RecyclerView.Adapter<BarChartAdapter.ChartV
     }
 
     public class ChartViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R2.id.image1)
         AppCompatImageView iv;
-        TextView tv, tv_xaxis;
+        @BindView(R2.id.tv1)
+        TextView tv;
+        @BindView(R2.id.tv_xaxis)
+        TextView tv_xaxis;
+        @BindView(R2.id.rl1)
         RelativeLayout rl;
+        @BindView(R2.id.view)
         View v;
 
         public ChartViewHolder(View view) {
             super(view);
-            iv = view.findViewById(R.id.image1);
+            ButterKnife.bind(this,view);
+            /*iv = view.findViewById(R.id.image1);
             tv = view.findViewById(R.id.tv1);
             rl = view.findViewById(R.id.rl1);
             v = view.findViewById(R.id.view);
-            tv_xaxis = view.findViewById(R.id.tv_xaxis);
+            tv_xaxis = view.findViewById(R.id.tv_xaxis);*/
         }
     }
 

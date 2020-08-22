@@ -1,4 +1,4 @@
-package suru.bind.barchartlib.model;
+package suru.bind.custombarchart.model;
 
 import android.graphics.drawable.Drawable;
 

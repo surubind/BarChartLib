@@ -1,8 +1,5 @@
 package suru.bind.barchartlib;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -10,32 +7,34 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import suru.bind.barchartlib.adapter.BarChartAdapter;
-import suru.bind.barchartlib.adapter.OnChartItemClicked;
-import suru.bind.barchartlib.builder.BarChart;
-import suru.bind.barchartlib.model.ChartContent;
-import suru.bind.barchartlib.views.CustomBarChartView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import suru.bind.custombarchart.adapter.BarChartAdapter;
+import suru.bind.custombarchart.adapter.OnChartItemClicked;
+import suru.bind.custombarchart.builder.BarChart;
+import suru.bind.custombarchart.model.ChartContent;
+import suru.bind.custombarchart.views.CustomBarChartView;
+
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private RecyclerView recycler;
     private List<ChartContent> list = new ArrayList<>();
-    private CustomBarChartView barChartView;
-    private Button button;
+
+    @BindView(R.id.barChartView)
+    CustomBarChartView barChartView;
+    @BindView(R.id.button)
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        recycler = findViewById(R.id.recycler);
-        barChartView = findViewById(R.id.barChartView);
-        button = findViewById(R.id.button);
-
+        ButterKnife.bind(this);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

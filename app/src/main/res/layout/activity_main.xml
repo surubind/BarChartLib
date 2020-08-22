@@ -8,7 +8,7 @@
     tools:shrinkMode="strict">
 
 
-    <suru.bind.barchartlib.views.CustomBarChartView
+    <suru.bind.custombarchart.views.CustomBarChartView
         android:id="@+id/barChartView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,4 +35,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barChartView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
